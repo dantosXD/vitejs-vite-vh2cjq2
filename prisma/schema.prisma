@@ -1,0 +1,16 @@
+// Update the User model to add isAdmin field
+model User {
+  id          String        @id @default(cuid())
+  email       String        @unique
+  password    String
+  name        String
+  avatar      String?
+  isAdmin     Boolean       @default(false)  // Add this line
+  createdAt   DateTime      @default(now())
+  catches     Catch[]
+  groups      Group[]
+  events      Event[]       @relation("EventParticipants")
+  comments    Comment[]
+  ownedEvents Event[]       @relation("EventOwner")
+  invitations Invitation[]
+}
